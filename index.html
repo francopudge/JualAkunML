@@ -10,16 +10,19 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
         body {
             background-color: #0f172a; 
             color: #f8fafc;
-            padding-top: 80px;
-            padding-bottom: 80px;
+            /* Memberi ruang agar konten tidak tertutup header/footer */
+            padding-top: 70px;
+            padding-bottom: 60px;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             overflow-x: hidden;
         }
 
@@ -28,12 +31,13 @@
             position: fixed;
             left: 0;
             width: 100%;
-            background: rgba(15, 23, 42, 0.98);
+            background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             z-index: 1000;
             display: flex;
             align-items: center;
-            padding: 0 20px;
+            padding: 0 15px;
         }
 
         .header { 
@@ -48,95 +52,114 @@
             height: 60px;
             border-top: 1px solid #334155; 
             justify-content: center;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            color: #94a3b8;
         }
 
-        .logo-text { font-size: 1.5rem; font-weight: 900; color: #3b82f6; }
+        .logo-text { font-size: 1.4rem; font-weight: 900; color: #3b82f6; letter-spacing: 1px; }
 
         #music-btn {
             background: #3b82f6;
             border: none;
             color: white;
-            padding: 10px 20px;
+            padding: 8px 15px;
             border-radius: 8px;
             font-weight: bold;
+            font-size: 0.8rem;
         }
 
         /* MAIN AREA FULL SCREEN */
         .container {
-            width: 100%; /* Paksa Full Layar */
-            padding: 15px;
+            flex: 1;
+            width: 100%;
+            max-width: 500px; /* Batas lebar maksimal agar tidak aneh di tablet */
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Konten di tengah secara vertikal */
         }
 
         .hero {
             text-align: center;
-            padding: 20px 0;
+            margin-bottom: 20px;
         }
 
         .hero h1 { 
-            font-size: 2.5rem; /* Gedein font judul */
+            font-size: 2.2rem;
             font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 5px;
+            background: linear-gradient(to right, #3b82f6, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* CARD JADI LEBAR BANGET */
+        /* CARD STYLE */
         .card {
             background: #1e293b;
-            width: 100%; /* Full mengikuti container */
-            border-radius: 20px;
-            padding: 40px 20px;
+            width: 100%;
+            border-radius: 24px;
+            padding: 30px 20px;
             text-align: center;
             border: 1px solid #334155;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
         }
 
         .price-tag {
-            font-size: 5rem; /* Harga super gede */
+            font-size: 4.5rem;
             font-weight: 900;
             color: #10b981;
-            margin: 10px 0;
+            margin: 5px 0;
+            line-height: 1;
         }
 
         .badge {
             background: #ef4444;
-            padding: 5px 15px;
-            border-radius: 5px;
-            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
             display: inline-block;
             margin-bottom: 10px;
+            text-transform: uppercase;
         }
 
         .features {
             list-style: none;
             text-align: left;
-            margin: 30px 0;
+            margin: 25px 0;
         }
 
         .features li {
-            font-size: 1.2rem; /* List diperbesar */
-            margin-bottom: 15px;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
+        /* BUTTON ACTION */
         .btn-buy {
             background: #2563eb;
             color: white;
             width: 100%;
-            padding: 20px; /* Tombol tinggi gampang dipencet */
-            border-radius: 15px;
-            font-size: 1.5rem;
-            font-weight: 900;
+            padding: 18px;
+            border-radius: 16px;
+            font-size: 1.3rem;
+            font-weight: 800;
             border: none;
-            box-shadow: 0 8px 0 #1d4ed8; /* Efek tombol 3D */
+            box-shadow: 0 6px 0 #1d4ed8;
             cursor: pointer;
+            transition: all 0.1s;
         }
 
         .btn-buy:active {
             transform: translateY(4px);
-            box-shadow: 0 4px 0 #1d4ed8;
+            box-shadow: 0 2px 0 #1d4ed8;
         }
 
+        /* LOADER FULL SCREEN */
         #loader {
             position: fixed;
             inset: 0;
@@ -148,14 +171,21 @@
             align-items: center;
         }
 
-        .progress-text { font-size: 3rem; font-weight: 900; color: #3b82f6; }
+        .progress-text { font-size: 4rem; font-weight: 900; color: #3b82f6; }
+        
+        /* Animasi sederhana */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .card { animation: fadeIn 0.6s ease-out; }
     </style>
 </head>
 <body>
 
     <div id="loader">
         <div class="progress-text">0%</div>
-        <p>MEMUAT KSTORE...</p>
+        <p style="letter-spacing: 3px; font-weight: bold; color: #64748b;">MEMUAT KSTORE</p>
     </div>
 
     <header class="sticky-box header">
@@ -166,19 +196,21 @@
     <main class="container">
         <div class="hero">
             <h1>STARTER ML</h1>
-            <p style="font-size: 1.2rem; color: #94a3b8;">Akun Fresh, Harga Sadis!</p>
+            <p style="font-size: 1.1rem; color: #94a3b8;">Akun Fresh, Harga Sadis!</p>
         </div>
 
         <div class="card">
             <span class="badge">STOK TERBATAS</span>
             <div class="price-tag">15K</div>
-            <p style="background:#334155; display:inline-block; padding:5px 10px; border-radius:5px;">DANA / CASH</p>
+            <div style="margin-bottom: 20px;">
+                <p style="background:#334155; display:inline-block; padding:5px 15px; border-radius:8px; font-size: 0.9rem; font-weight: 600;">DANA / QRIS / CASH</p>
+            </div>
             
             <ul class="features">
                 <li>✅ 1 Skin Pilihan + Hero</li>
                 <li>✅ Win Rate GG (Fresh)</li>
                 <li>✅ Full Aman 100%</li>
-                <li>✅ Proses Kilat</li>
+                <li>✅ Proses Kilat (5 Menit)</li>
             </ul>
 
             <button class="btn-buy" onclick="kirimPesan()">BELI SEKARANG</button>
@@ -186,21 +218,27 @@
     </main>
 
     <footer class="sticky-box footer">
-        <p>&copy; 2026 Kstore - No Hackback!</p>
+        <p>&copy; 2026 Kstore - Aman & Terpercaya</p>
     </footer>
 
     <script>
-        // Loader Cepat
+        // Loader Logic
         window.addEventListener('load', () => {
             let p = 0;
             let i = setInterval(() => {
-                p += 10;
+                p += Math.floor(Math.random() * 15) + 5;
+                if(p >= 100) p = 100;
                 document.querySelector('.progress-text').innerText = p + '%';
                 if(p >= 100) {
                     clearInterval(i);
-                    document.getElementById('loader').style.display = 'none';
+                    setTimeout(() => {
+                        document.getElementById('loader').style.opacity = '0';
+                        setTimeout(() => {
+                            document.getElementById('loader').style.display = 'none';
+                        }, 300);
+                    }, 200);
                 }
-            }, 50);
+            }, 40);
         });
 
         function kirimPesan() {
@@ -209,9 +247,8 @@
             window.open(`https://wa.me/${noWA}?text=${encodeURIComponent(teks)}`, '_blank');
         }
 
-        // Fungsi musik sederhana (sesuaikan source filenya)
         function toggleMusic() {
-            alert("Musik diputar!"); // Tambahkan logic audio.play() seperti sebelumnya
+            alert("Fitur musik aktif!"); 
         }
     </script>
 </body>
