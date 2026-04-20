@@ -21,7 +21,7 @@
         body {
             background-color: #0f172a; 
             color: #f8fafc;
-            padding-top: 70px;
+            padding-top: 80px;
             padding-bottom: 80px;
             display: flex;
             flex-direction: column;
@@ -113,29 +113,34 @@
             transition: 0.3s;
         }
 
-        /* --- MAIN CONTENT (GEDEIN KOTAK) --- */
+        /* --- MAIN CONTENT (FULL WIDTH SETTING) --- */
         .container {
             width: 100%;
-            max-width: 480px; /* Diperlebar untuk layar HP */
-            padding: 12px;
+            max-width: 100%; /* Full Screen */
+            padding: 0;      /* Hilangkan jarak samping */
             flex-grow: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
-        .hero { text-align: center; margin-bottom: 20px; }
+        .hero { 
+            text-align: center; 
+            margin-bottom: 25px; 
+            padding: 0 20px; 
+        }
         .hero h1 { font-size: 2.2rem; font-weight: 800; color: #fff; line-height: 1.2; }
         .hero p { color: #94a3b8; font-size: 1rem; margin-top: 5px; }
 
         .card {
             background: #1e293b;
-            padding: 45px 25px; /* Padding dalam diperbesar */
-            border-radius: 35px; /* Lebih melengkung mewah */
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            padding: 45px 20px; 
             width: 100%;
             text-align: center;
-            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            /* Hilangkan radius untuk efek full layar */
+            border-radius: 0; 
             position: relative;
         }
 
@@ -151,7 +156,7 @@
         }
 
         .price-tag {
-            font-size: 4.8rem; /* Harga dibuat sangat besar */
+            font-size: 5rem; 
             font-weight: 900;
             color: #10b981; 
             margin: 10px 0;
@@ -170,9 +175,15 @@
             margin-bottom: 30px;
         }
 
+        /* --- CONTENT WRAPPER AGAR TEKS TIDAK MEPET --- */
+        .card-content {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
         .features {
             list-style: none;
-            text-align: left;
             margin-bottom: 30px;
             padding-top: 25px;
             border-top: 1px solid rgba(255,255,255,0.1);
@@ -183,7 +194,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            font-size: 1.05rem; /* Teks list lebih besar */
+            font-size: 1.1rem;
         }
 
         .note {
@@ -194,13 +205,14 @@
             color: #93c5fd;
             margin-bottom: 25px;
             line-height: 1.4;
+            text-align: center;
         }
 
         .btn-buy {
             background: linear-gradient(135deg, #3b82f6, #1d4ed8);
             color: white;
             border: none;
-            padding: 22px; /* Tombol lebih tebal */
+            padding: 22px; 
             border-radius: 20px;
             font-size: 1.2rem;
             font-weight: 800;
@@ -217,7 +229,7 @@
 
         /* --- RESPONSIVE SMALL HP --- */
         @media (max-width: 360px) {
-            .price-tag { font-size: 3.8rem; }
+            .price-tag { font-size: 4rem; }
             .hero h1 { font-size: 1.8rem; }
             .card { padding: 35px 15px; }
         }
@@ -253,19 +265,21 @@
             <div class="price-tag">15rb</div>
             <div class="payment-method">DANA • CASH </div>
             
-            <ul class="features">
-                <li><span>✨</span> 1 Skin Pilihan + Hero</li>
-                <li><span>🔥</span> Win Rate Fresh 100%</li>
-                <li><span>⚡</span> Login Moonton Aman</li>
-                <li><span>🛡️</span> Garansi Anti Hackback</li>
-                <li><span>🎁</span> Sistem PreOrder Cepat</li>
-            </ul>
+            <div class="card-content">
+                <ul class="features">
+                    <li><span>✨</span> 1 Skin Pilihan + Hero</li>
+                    <li><span>🔥</span> Win Rate Fresh 100%</li>
+                    <li><span>⚡</span> Login Moonton Aman</li>
+                    <li><span>🛡️</span> Garansi Anti Hackback</li>
+                    <li><span>🎁</span> Sistem PreOrder Cepat</li>
+                </ul>
 
-            <div class="note">
-                <strong>Catatan:</strong> Tekan tombol di bawah untuk terhubung ke WhatsApp Admin dan melihat list skin.
+                <div class="note">
+                    <strong>Catatan:</strong> Tekan tombol di bawah untuk terhubung ke WhatsApp Admin dan melihat list skin.
+                </div>
+
+                <button class="btn-buy" onclick="kirimPesan()">Beli Sekarang</button>
             </div>
-
-            <button class="btn-buy" onclick="kirimPesan()">Beli Sekarang</button>
         </div>
     </main>
 
